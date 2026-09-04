@@ -5,6 +5,8 @@ Observatory.
 
 **Original Author**: Scott Hakoda (Utah Tech University; Akamai Workforce Initiative 2025)
 
+**Original Repo**: https://github.com/ScottHakoda/automating-nickel-1m
+
 **Site**: University of California Observatories, Santa Cruz, California
 
 **Mentors**: Kyle Westfall, Will Deich
@@ -50,9 +52,9 @@ python3 -m venv nickel
 # Activate the environment
 source ~/nickel/bin/activate
 # Clone the repository
-git clone https://github.com/kbwestfall/automating-nickel-1m.git
+git clone https://github.com/UCObservatories/nickel_focus.git
 # Install using pip
-cd automating-nickel-1m
+cd nickel_focus
 pip install -e .
 ```
 
@@ -177,12 +179,13 @@ Development happens in this git repository.  Installation is done via
 pip install -e ".[dev]"
 ```
 
-The package includes continuous integration tests performed via `tox` and every time changes are pushed to the GitHub repository.
+The package includes continuous integration tests performed via `tox` and every
+time changes are pushed to the GitHub repository.
 
 Tests can be executed locally using `pytest`:
 
 ```console
-cd automating-nickel-1m
+cd nickel_focus
 pytest -W ignore
 ```
 
