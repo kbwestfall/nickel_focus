@@ -64,7 +64,7 @@ dev = [
 ]
 
 [project.urls]
-Repository = "https://github.com/kbwestfall/automating-nickel-1m"
+Repository = "https://github.com/UCObservatories/nickel_focus.git"
 #Documentation = ""
 
 [project.scripts]
