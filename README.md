@@ -31,9 +31,9 @@ available for interactive use.
 
 ## Installation
 
-Although provided as a python package, the code is installed and maintained by
-observatory staff.  Local installation is possible but of limited use for
-observers.  For completeness, we describe installation here.
+> **NOTE**: Although provided as a python package, the code is installed and
+> maintained by observatory staff.  Local installation is possible but of limited
+> use for observers.  For completeness, we describe installation here.
 
 `nickel_focus` requires Python 3.12–3.14. The `ktl` package (Keck's
 telescope-control middleware) is not pip-installable — it's provided separately
@@ -173,6 +173,8 @@ nickel_focus_gui
 > Brad Holden and Will Deich; see `claude/DEPLOYMENT.md` in this
 > repository for the current, evolving detail.
 
+### Development
+
 Development happens in this git repository.  Installation is done via
 
 ```console
@@ -200,6 +202,8 @@ tox -e 3.12-test-qt
 > hardware for this purpose, but it represents a gap in actual, real-world
 > testing.
 
+### Deployment
+
 At the telescope, `nickel_focus` runs under the observatory's own `kpython`
 environment and is maintained at the system level by observatory staff —
 observers use that system-level install directly, rather than a `pip`-managed
@@ -209,12 +213,13 @@ The maintenance workflow is as follows:
 
  - Maintainers edit their local install of the git repository.
  - Updates are merged to the remote GitHub repository.
- - New versions deployed via the observatory should ideally be tagged.
+ - The repo is tagged when it is ready to be deployed to the observatory system.
  - To deploy a new version, maintainers execute the `tools/deploy.sh` bash
    script on the telescope host computer.  This script:
-    - Update the deployment-side git checkout to the latest `main`.  This is a
-      hard reset, meaning any changes local to the host computer will be lost
-      (i.e., the GitHub version is the authoritative version of the code).
+    - Updates the deployment-side git checkout to identically match the latest
+      `main` commit.  This is a hard reset, meaning any changes local to the
+      host computer will be lost (i.e., the GitHub version is the authoritative
+      version of the code).
     - Regenerate `nickel_focus/pkg/version.py` from the current git state using
      `tools/write_version.py`.
     - Sync the updated `nickel_focus/` tree into the CVS working copy.
