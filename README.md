@@ -5,6 +5,8 @@ Observatory.
 
 **Original Author**: Scott Hakoda (Utah Tech University; Akamai Workforce Initiative 2025)
 
+**Original Repo**: https://github.com/ScottHakoda/automating-nickel-1m
+
 **Site**: University of California Observatories, Santa Cruz, California
 
 **Mentors**: Kyle Westfall, Will Deich
@@ -29,9 +31,9 @@ available for interactive use.
 
 ## Installation
 
-Although provided as a python package, the code is installed and maintained by
-observatory staff.  Local installation is possible but of limited use for
-observers.  For completeness, we describe installation here.
+> **NOTE**: Although provided as a python package, the code is installed and
+> maintained by observatory staff.  Local installation is possible but of limited
+> use for observers.  For completeness, we describe installation here.
 
 `nickel_focus` requires Python 3.12–3.14. The `ktl` package (Keck's
 telescope-control middleware) is not pip-installable — it's provided separately
@@ -50,9 +52,9 @@ python3 -m venv nickel
 # Activate the environment
 source ~/nickel/bin/activate
 # Clone the repository
-git clone https://github.com/kbwestfall/automating-nickel-1m.git
+git clone https://github.com/UCObservatories/nickel_focus.git
 # Install using pip
-cd automating-nickel-1m
+cd nickel_focus
 pip install -e .
 ```
 
@@ -171,18 +173,21 @@ nickel_focus_gui
 > Brad Holden and Will Deich; see `claude/DEPLOYMENT.md` in this
 > repository for the current, evolving detail.
 
+### Development
+
 Development happens in this git repository.  Installation is done via
 
 ```console
 pip install -e ".[dev]"
 ```
 
-The package includes continuous integration tests performed via `tox` and every time changes are pushed to the GitHub repository.
+The package includes continuous integration tests performed via `tox` and every
+time changes are pushed to the GitHub repository.
 
 Tests can be executed locally using `pytest`:
 
 ```console
-cd automating-nickel-1m
+cd nickel_focus
 pytest -W ignore
 ```
 
@@ -197,6 +202,8 @@ tox -e 3.12-test-qt
 > hardware for this purpose, but it represents a gap in actual, real-world
 > testing.
 
+### Deployment
+
 At the telescope, `nickel_focus` runs under the observatory's own `kpython`
 environment and is maintained at the system level by observatory staff —
 observers use that system-level install directly, rather than a `pip`-managed
@@ -206,12 +213,13 @@ The maintenance workflow is as follows:
 
  - Maintainers edit their local install of the git repository.
  - Updates are merged to the remote GitHub repository.
- - New versions deployed via the observatory should ideally be tagged.
+ - The repo is tagged when it is ready to be deployed to the observatory system.
  - To deploy a new version, maintainers execute the `tools/deploy.sh` bash
    script on the telescope host computer.  This script:
-    - Update the deployment-side git checkout to the latest `main`.  This is a
-      hard reset, meaning any changes local to the host computer will be lost
-      (i.e., the GitHub version is the authoritative version of the code).
+    - Updates the deployment-side git checkout to identically match the latest
+      `main` commit.  This is a hard reset, meaning any changes local to the
+      host computer will be lost (i.e., the GitHub version is the authoritative
+      version of the code).
     - Regenerate `nickel_focus/pkg/version.py` from the current git state using
      `tools/write_version.py`.
     - Sync the updated `nickel_focus/` tree into the CVS working copy.
